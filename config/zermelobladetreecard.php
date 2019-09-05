@@ -6,7 +6,7 @@ return [
      * The template the controller will use to render the report
      * This is used in WebController implementation of ControllerInterface@show method
      */
-    "VIEW_TEMPLATE"=>env("VIEW_TEMPLATE","Zermelo::layouts.treecard"),
+    "VIEW_TEMPLATE"=>env("VIEW_TEMPLATE","Zermelo::layouts.tree_card"),
 
     /**
      * Middleware on the card web routes
