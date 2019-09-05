@@ -1,6 +1,6 @@
 <?php
 
-namespace CareSet\ZermeloBladeCard;
+namespace CareSet\ZermeloBladeTreeCard;
 
 use CareSet\Zermelo\Reports\Cards\CardPresenter as BasePresenter;
 

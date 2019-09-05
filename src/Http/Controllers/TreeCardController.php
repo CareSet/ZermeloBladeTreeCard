@@ -1,9 +1,9 @@
 <?php
 
-namespace CareSet\ZermeloBladeCard\Http\Controllers;
+namespace CareSet\ZermeloBladeTreeCard\Http\Controllers;
 
 use CareSet\Zermelo\Http\Requests\CardsReportRequest;
-use CareSet\ZermeloBladeCard\CardPresenter;
+use CareSet\ZermeloBladeTreeCard\CardPresenter;
 use Illuminate\Support\Facades\Auth;
 
 class TreeCardController

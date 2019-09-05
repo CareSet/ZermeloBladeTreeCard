@@ -1,6 +1,6 @@
 <?php
 
-namespace CareSet\ZermeloBladeCard\Console;
+namespace CareSet\ZermeloBladeTreeCard\Console;
 
 use CareSet\Zermelo\Console\AbstractZermeloInstallCommand;
 

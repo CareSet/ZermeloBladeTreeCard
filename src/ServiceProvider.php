@@ -1,9 +1,9 @@
 <?php
 
-namespace CareSet\ZermeloBladeCard;
+namespace CareSet\ZermeloBladeTreeCard;
 
 use CareSet\Zermelo\Models\AbstractZermeloProvider;
-use CareSet\ZermeloBladeCard\Console\ZermeloBladeCardInstallCommand;
+use CareSet\ZermeloBladeTreeCard\Console\ZermeloBladeTreeCardInstallCommand;
 use Illuminate\Support\Facades\Route;
 
 
