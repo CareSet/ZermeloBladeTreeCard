@@ -29,22 +29,10 @@
 </div>
 
 
-<div id="bottom_locator" style="
-    position: fixed;
-    bottom: 10px;
-"></div>
 
 
-<script type="text/javascript" src="/vendor/CareSet/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/js/popper.min.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/js/datatables.min.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/js/jquery.dataTables.yadcf.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/js/moment.min.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/js/daterangepicker.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/js/d3.v4.min.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/js/datatables.fixedcolumns.destroy.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/js/jquery.doubleScroll.js"></script>
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.4.3.1.min.js"></script>
 
 <script type="text/javascript">
 
@@ -68,7 +56,6 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 }
 
 
-
     $(function() {
 
         var columnMap = [];
@@ -83,6 +70,7 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 		})
 		.done(function(header_data) { //this means I have clean results in the data variable...
 
+
                     var columns = header_data.columns;
                     var order = header_data.order;
                     var searches = [];
@@ -96,7 +84,7 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 
                     var passthrough_params = {!! $presenter->getReport()->getRequestFormInput( true ) !!};
                     var merge_get_params = {
-                        'data-option': '{{ $presenter->getReport()->GetBoltId() }}',
+                        'data-option': '',
                         'token': '{{ $presenter->getToken() }}',
                         'page': (header_data.start / header_data.length) + 1,
                         "order": callbackOrder,
@@ -111,14 +99,18 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 
                     var param = decodeURIComponent( $.param(merge) );
 
+		    var json_url_to_get = '{{ $presenter->getReportUri() }}';
+	
+
 			//now lets get the actual data...
-                    $.getJSON('{{ $presenter->getReportUri() }}', param
+                    $.getJSON(json_url_to_get, param
                     ).fail(function (jqxhr, textStatus, error){
             		doh_ajax_failed(jqxhr, textStatus, error);
 			console.log('I get to this fail');
 			}
 			)
 		    .done(function(data) {
+
 
 			var cards_html = "<div class='row justify-content-left'>";
 			var i = 0;
@@ -130,17 +122,54 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 			data.data.forEach(function(this_card) {
 				is_empty = false; //we hqve at least one.
 
+				if(isset(this_card.url)){
+					//there is a root url..
+					real_card_header = `<div class='card-header'> <a target='_blank' href='${this_card.url}'> ${this_card.label} </a>  </div>`;
+				}else{
+					//no url version
+					real_card_header = `<div class='card-header'> ${this_card.label}  </div>`;
+				}
 					
-				real_card_header = `<div class='card-title'> ${this_card.root}  </div>`;
+				if(isset(this_card.sub_tree)){
+					branch_list = "<ul class='list-group list-group-flush'>";
+					this_card.sub_tree.forEach(function(branch_item) {
+						if(isset(branch_item.url)){
+							branch_list += `<li class='list-group-item'> <a target='_blank' href='${branch_item.url}'>  ${branch_item.label} </a> `;	
+						}else{
+							branch_list += `<li class='list-group-item'> ${branch_item.label} `;
+						}
+
+						if(isset(branch_item.sub_tree)){
+							branch_list += "<ul class='list-group'>";
+							//then there is a leaf here too...
+							branch_item.sub_tree.forEach(function (leaf_item) {
+								if(isset(leaf_item.url)){
+									branch_list += `<li class='list-group-item'> <a target='_blank' href='${leaf_item.url}'> ${leaf_item.label} </a> </li>`;
+								}else{
+									branch_list += `<li class='list-group-item'>  ${leaf_item.label}   </li>`;
+								}
+
+							});
+							branch_list  += '</ul>';
+						}
+
+						//finishe up the list item..
+						branch_list += '</li>';
+
+					});
+					branch_list += '</ul>';
+				}else{
+					branch_list = '';
+				}
 				
+
+				
+	
 				cards_html += `
-<div class="col-auto mb-3">
-	<div style='width: ${card_width}' class="card" >
+<div class="col-md-3">
+	<div style='width: ${card_width}' class='card' >
   		${real_card_header}
-  		<div class="card-body">
-    			<h5 class="card-title">Not Yet</h5>
-    			<p class="card-text">Not yet</p>
-  		</div>
+		${branch_list}
 	</div>
 </div>
 `;
