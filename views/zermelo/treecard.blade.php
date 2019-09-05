@@ -130,58 +130,21 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 			data.data.forEach(function(this_card) {
 				is_empty = false; //we hqve at least one.
 
+					
+				real_card_header = `<div class='card-title'> ${this_card.root}  </div>`;
 				
-				//we use several isset commands to ensure that when data is not set..
-				//that those sections simply do not show up...
-				//making the card gracefully simplify as data reduces...
-
-				if(isset(this_card.card_img_top)){
-					if(isset(this_card.card_img_top_alttext)){
-						card_img_top = `<img style="width: ${card_width}" class="card-img-top" src="${this_card.card_img_top}" alt="${this_card.card_img_top_alttext}">`
-					}else{
-						card_img_top = `<img style="width: ${card_width}" class="card-img-top" src="${this_card.card_img_top}">`
-					}
-				}else{
-					card_img_top = '';
-				}
-	
-				if(isset(this_card.card_img_bottom)){
-					if(isset(this_card.card_img_bottom_alttext)){
-						card_img_bottom = `<img style="width: ${card_width}"  class="card-img-top" src="${this_card.card_img_bottom}" alt="${this_card.card_img_bottom_alttext}">`
-					}else{
-						card_img_bottom = `<img style="width: ${card_width}"  class="card-img-top" src="${this_card.card_img_bottom}">`
-					}
-				}else{
-					card_img_bottom = '';
-				}
-
-				if(isset(this_card.card_header)){
-					real_card_header = `<div class="card-header text-center">${this_card.card_header}</div>`;
-				}else{
-					real_card_header = ''
-				}
-
-				if(isset(this_card.card_footer)){
-					real_card_footer = `<div class="card-header text-center">${this_card.card_footer}</div>`;
-				}else{
-					real_card_footer = ''
-				}
-
-
 				cards_html += `
 <div class="col-auto mb-3">
 	<div style='width: ${card_width}' class="card" >
-		${card_img_top}
   		${real_card_header}
   		<div class="card-body">
-    			<h5 class="card-title">${this_card.card_title}</h5>
-    			<p class="card-text">${this_card.card_text}</p>
+    			<h5 class="card-title">Not Yet</h5>
+    			<p class="card-text">Not yet</p>
   		</div>
-    		${real_card_footer}
-		${card_img_bottom}
 	</div>
 </div>
 `;
+
 				i++;
 	
 			})

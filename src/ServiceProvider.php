@@ -20,7 +20,7 @@ Class ServiceProvider extends AbstractZermeloProvider
          *  - Exports Assets
          */
         $this->commands([
-            ZermeloBladeCardInstallCommand::class
+            ZermeloBladeTreeCardInstallCommand::class
         ]);
 
         /*
@@ -28,14 +28,14 @@ Class ServiceProvider extends AbstractZermeloProvider
          * Try to load config from the app's config directory first,
          * then load from the package.
          */
-        if ( file_exists( config_path( 'zermelobladecard.php' ) ) ) {
+        if ( file_exists( config_path( 'zermelobladereecard.php' ) ) ) {
 
             $this->mergeConfigFrom(
-                config_path( 'zermelobladecard.php' ), 'zermelobladecard'
+                config_path( 'zermelobladetreecard.php' ), 'zermelobladetreecard'
             );
         } else {
             $this->mergeConfigFrom(
-                __DIR__.'/../config/zermelobladecard.php', 'zermelobladecard'
+                __DIR__.'/../config/zermelobladetreecard.php', 'zermelobladetreecard'
             );
         }
 
@@ -77,14 +77,14 @@ Class ServiceProvider extends AbstractZermeloProvider
      */
     protected function routeConfiguration()
     {
-        $middleware = config('zermelobladecard.MIDDLEWARE',[ 'web' ]);
+        $middleware = config('zermelobladetreecard.MIDDLEWARE',[ 'web' ]);
         $middlewareString = implode(",",$middleware);
 
         return [
-            'namespace' => 'CareSet\ZermeloBladeCard\Http\Controllers',
+            'namespace' => 'CareSet\ZermeloBladeTreeCard\Http\Controllers',
             //  'domain' => config('zermelo.domain', null),
             'as' => 'zermelo.tabular.',
-            'prefix' => config( 'zermelobladecard.URI_PREFIX' ),
+            'prefix' => config( 'zermelobladetreecard.URI_PREFIX' ),
             'middleware' => $middlewareString,
         ];
     }

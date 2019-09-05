@@ -6,11 +6,11 @@ use CareSet\Zermelo\Http\Requests\CardsReportRequest;
 use CareSet\ZermeloBladeCard\CardPresenter;
 use Illuminate\Support\Facades\Auth;
 
-class CardController
+class TreeCardController
 {
     public function show( CardsReportRequest $request )
     {
-        $presenter = new CardPresenter( $request->buildReport() );
+        $presenter = new TreeCardPresenter( $request->buildReport() );
 
         $presenter->setApiPrefix( api_prefix() );
         $presenter->setReportPath( tabular_api_prefix() );
@@ -20,7 +20,7 @@ class CardController
             $presenter->setToken( $user->getRememberToken() );
         }
 
-        $view = config("zermelobladecard.VIEW_TEMPLATE");
+        $view = config("zermelobladetreecard.VIEW_TEMPLATE");
 
         return view( $view, [ 'presenter' => $presenter ] );
     }

@@ -2,7 +2,7 @@
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Cards\AbstractCardsReport;
 
-class CardTest extends AbstractCardsReport
+class TreeCardTest extends AbstractCardsReport
 {
 
     public function GetReportName(): string { return('Enter Your Report Name Here'); }
@@ -36,13 +36,13 @@ class CardTest extends AbstractCardsReport
 
         $sql = "
 SELECT 
-	id AS card_header,
-	title AS card_title,
-	text AS card_text,
-	image_url AS card_img_top,
-	alt_text As card_img_top_altext,
-	id AS card_footer
-FROM zermelo_cards.cards
+	root,
+	root_url,
+	branch,
+	branch_url,
+	leaf,
+	leaf_url
+FROM zermelo_tree_cards.tree_cards
 ";
 
         return $sql;
@@ -55,14 +55,6 @@ FROM zermelo_cards.cards
      */
     public function MapRow(array $row, int $row_number) :array
     {
-
-        /*
-        //this logic would ensure that every cell in the TABLE_NAME column, was converted to a link to
-        //a table drilldown report
-        $table_name = $row['TABLE_NAME'];
-        $row[''] = "<a href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
-
-    */
 
         return $row;
     }

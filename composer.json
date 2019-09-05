@@ -1,6 +1,6 @@
 {
-    "name": "careset/zermelobladecard",
-    "description": "Zermelo, a PHP reporting engine for Laravel. The Bootstrap Card Reporting Engine",
+    "name": "careset/zermelobladetreecard",
+    "description": "Zermelo, a PHP reporting engine for Laravel. The Bootstrap Tree Card Reporting Engine",
     "type": "library",
     "license": "Apache-2.0",
      "keywords": [
@@ -10,6 +10,7 @@
                 "report",
                 "datatables",
                 "d3",
+		"bootstrap",
                 "vega"
     ],
     "require": {
@@ -17,13 +18,13 @@
     },
     "autoload": {
         "psr-4" : {
-            "CareSet\\ZermeloBladeCard\\" : "src/"
+            "CareSet\\ZermeloBladeTreeCard\\" : "src/"
         }
     },
     "extra": {
 	    "laravel": {
 	        "providers": [
-	            "CareSet\\ZermeloBladeCard\\ServiceProvider"
+	            "CareSet\\ZermeloBladeTreeCard\\ServiceProvider"
 	        ]
 	    }
 	},

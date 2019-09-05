@@ -4,7 +4,7 @@ namespace CareSet\ZermeloBladeCard\Console;
 
 use CareSet\Zermelo\Console\AbstractZermeloInstallCommand;
 
-class ZermeloBladeCardInstallCommand extends AbstractZermeloInstallCommand
+class ZermeloBladeTreeCardInstallCommand extends AbstractZermeloInstallCommand
 {
     protected $view_path = __DIR__.'/../../views';
 
@@ -18,8 +18,8 @@ class ZermeloBladeCardInstallCommand extends AbstractZermeloInstallCommand
      * @var array
      */
     protected $views = [
-        'zermelo/card.blade.php',
-        'zermelo/layouts/card.blade.php',
+        'zermelo/tree_card.blade.php',
+        'zermelo/layouts/tree_card.blade.php',
     ];
 
     /**
@@ -27,6 +27,6 @@ class ZermeloBladeCardInstallCommand extends AbstractZermeloInstallCommand
      *
      * @var string
      */
-    protected $signature = 'install:zermelobladecard
+    protected $signature = 'install:zermelobladetreecard
                     {--force : Overwrite existing views by default}';
 }

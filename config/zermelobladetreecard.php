@@ -6,7 +6,7 @@ return [
      * The template the controller will use to render the report
      * This is used in WebController implementation of ControllerInterface@show method
      */
-    "VIEW_TEMPLATE"=>env("VIEW_TEMPLATE","Zermelo::layouts.card"),
+    "VIEW_TEMPLATE"=>env("VIEW_TEMPLATE","Zermelo::layouts.treecard"),
 
     /**
      * Middleware on the card web routes
@@ -19,6 +19,6 @@ return [
      * Note: the API routes are auto generated with this same URI path with the api-prefixed to the url
      * /Zermelo/(ReportName) (see config/zermelo.php for api prefix setting)
      */
-    'URI_PREFIX'=>env("URI_PREFIX","ZermeloCard"),
+    'URI_PREFIX'=>env("URI_PREFIX","ZermeloTreeCard"),
 
 ];
