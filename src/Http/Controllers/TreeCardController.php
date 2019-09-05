@@ -3,7 +3,7 @@
 namespace CareSet\ZermeloBladeTreeCard\Http\Controllers;
 
 use CareSet\Zermelo\Http\Requests\CardsReportRequest;
-use CareSet\ZermeloBladeTreeCard\CardPresenter;
+use CareSet\ZermeloBladeTreeCard\TreeCardPresenter;
 use Illuminate\Support\Facades\Auth;
 
 class TreeCardController
@@ -13,7 +13,7 @@ class TreeCardController
         $presenter = new TreeCardPresenter( $request->buildReport() );
 
         $presenter->setApiPrefix( api_prefix() );
-        $presenter->setReportPath( tabular_api_prefix() );
+        $presenter->setReportPath( tree_api_prefix() );
 
         $user = Auth::guard()->user();
         if ( $user ) {

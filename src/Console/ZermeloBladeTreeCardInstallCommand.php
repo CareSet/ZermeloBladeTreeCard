@@ -10,7 +10,7 @@ class ZermeloBladeTreeCardInstallCommand extends AbstractZermeloInstallCommand
 
     protected $asset_path = __DIR__.'/../../assets';
 
-    protected $config_file = __DIR__.'/../../config/zermelobladecard.php';
+    protected $config_file = __DIR__.'/../../config/zermelobladetreecard.php';
 
     /**
      * The views that need to be exported.
