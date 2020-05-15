@@ -35,7 +35,7 @@ composer require careset/zermelobladetreecard
 Then use artisan to configure it
 
 ```
-php artisan install:zermelobladetreecard
+php artisan zermelo:install_zermelobladetreecard
 ```
 
 This may ask you to confirm the replacement of some assets... you can safely choose to replace or not replace, it makes little difference. 
