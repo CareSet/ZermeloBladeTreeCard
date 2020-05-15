@@ -11,11 +11,11 @@ class ZermeloBladeTreeCardInstallCommand extends AbstractZermeloInstallCommand
      *
      * @var array
      */
-    protected static $views = [
+    public static $views = [
         'zermelo/tree_card.blade.php',
         'zermelo/layouts/tree_card.blade.php',
     ];
-    
+
     protected static $view_path = __DIR__.'/../../views';
 
     protected static $asset_path = __DIR__.'/../../assets';
